@@ -1,0 +1,23 @@
+<mat-card>
+    <mat-card-content>
+      <table class="guest-table">
+        <tr>
+          <th>Name</th>
+          <th>E-Mail</th>
+          <th>City</th>
+        </tr>
+        <tr *ngFor="let guest of allGuests" [routerLink]="['/guests/' + guest.id]">
+          <td>{{guest.firstName}} {{guest.lastName}}</td>
+          <td>{{guest.email}}</td>
+          <td>{{guest.city}}</td>
+        </tr>
+      </table>
+  
+    </mat-card-content>
+  </mat-card>
+  
+  
+  
+  <button (click)="openDialog()" class="add-guest-btn" mat-fab color="primary" matTooltip="Add guest" [matTooltipPosition]="'above'!">
+      <mat-icon>add</mat-icon>
+    </button>

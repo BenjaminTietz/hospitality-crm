@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-content>
+      <table class="booking-table">
+        <tr>
+          <th>Name</th>
+          <th>E-Mail</th>
+          <th>Appartment</th>
+          <th>Check-in</th>
+          <th>Check-out</th>
+          <th>Total Price</th>
+        </tr>
+        <tr *ngFor="let booking of allBookings" [routerLink]="['/bookings/' + booking.id]">
+          <td>{{booking.firstName}} {{booking.lastName}}</td>
+          <td>{{booking.email}}</td>
+          <td>{{booking.appartment}}</td>
+          <td>{{booking.checkIn}}</td>
+          <td>{{booking.checkOut}}</td>
+          <td>{{booking.totalPrice}} €</td>
+        </tr>
+      </table>
+  
+    </mat-card-content>
+  </mat-card>
+  
+  
+  
+  <button (click)="openDialog()" class="add-booking-btn" mat-fab color="primary" matTooltip="Add booking" [matTooltipPosition]="'above'!">
+      <mat-icon>add</mat-icon>
+    </button>
