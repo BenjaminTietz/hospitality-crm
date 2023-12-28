@@ -31,7 +31,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { MatSelectModule } from '@angular/material/select';
 import { GuestDetailComponent } from './guest-detail/guest-detail.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -68,7 +68,8 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
     MatIconModule,
     MatTooltipModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

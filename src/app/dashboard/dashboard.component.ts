@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Chart } from 'chart.js/auto'
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
+
+  ngOnInit(): void {
+    
+  }
 }
+
+
+

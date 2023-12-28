@@ -1,16 +1,17 @@
 <mat-card class="guest-detail-header">
 
-    <img src="./assets/img/profil.png">
-    <div class="user-details">
-        <h2>Olaf Schubert </h2>
-        emailemail.de
+    <img class="ml-16 mb-16" src="./assets/img/profil.png">
+    <div class="guest-details">
+        <h2>{{guest.firstName}}{{guest.lastName}}</h2>
+        {{guest.email}}
     </div>
 </mat-card>
 
 <mat-card class="mt-32">
-        <mat-card-title>Address</mat-card-title>
+        <mat-card-title class="ml-16">Address</mat-card-title>
         <mat-card-content>
-            Musterstraße 23 <br>
-        12345 Musterstadt
+            {{guest.street}} <br>
+            {{guest.zipCode}} {{guest.city}} <br>
+            {{guest.country}}
       </mat-card-content>
 </mat-card>

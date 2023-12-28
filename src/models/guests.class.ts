@@ -5,6 +5,7 @@ export class Guests {
     street: string;
     zipCode: number;
     city: string;
+    country: string;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';                     //if else statement if obj exists then obj.fistName else empty string
@@ -13,6 +14,7 @@ export class Guests {
         this.street = obj ? obj.street : '';
         this.zipCode = obj ? obj.zipCode : '';
         this.city = obj ? obj.city : '';
+        this.country = obj ? obj.country : '';
     }
 
     public toJSON() {
@@ -23,6 +25,7 @@ export class Guests {
             street: this.street,
             zipCode: this.zipCode,
             city: this.city,
+            country: this.country,
         };
     }
 }
