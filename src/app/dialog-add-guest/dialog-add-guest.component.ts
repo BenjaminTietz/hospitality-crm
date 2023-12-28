@@ -13,7 +13,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class DialogAddGuestComponent {
 
   guest = new Guests();
-  birthDate: Date = new Date();
   loading = false;
 
   constructor(public dialogRef: MatDialogRef<DialogAddGuestComponent>,private firestore: AngularFirestore) { 

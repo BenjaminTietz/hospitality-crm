@@ -24,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { GuestComponent } from './guest/guest.component';
 import { DialogAddGuestComponent } from './dialog-add-guest/dialog-add-guest.component';
 import { DialogAddBookingComponent } from './dialog-add-booking/dialog-add-booking.component';
@@ -32,6 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { GuestDetailComponent } from './guest-detail/guest-detail.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { NgChartsModule } from 'ng2-charts';
+import { DialogEditGuestComponent } from './dialog-edit-guest/dialog-edit-guest.component';
+import { DialogEditGuestAddressComponent } from './dialog-edit-guest-address/dialog-edit-guest-address.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { NgChartsModule } from 'ng2-charts';
     DialogAddBookingComponent,
     BookingsComponent,
     GuestDetailComponent,
-    BookingDetailComponent
+    BookingDetailComponent,
+    DialogEditGuestComponent,
+    DialogEditGuestAddressComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,8 @@ import { NgChartsModule } from 'ng2-charts';
     MatTooltipModule,
     MatToolbarModule,
     MatSelectModule,
-    NgChartsModule
+    NgChartsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
