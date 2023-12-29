@@ -1,1 +1,38 @@
-<p>booking-detail works!</p>
+<mat-card class="booking-detail-header">
+  <img class="ml-16 mb-16" src="./assets/img/profil.png" />
+  <div class="booking-details">
+    <h2>{{ booking.firstName }}{{ booking.lastName }}</h2>
+    {{ booking.email }}
+  </div>
+</mat-card>
+
+<mat-card class="mt-32">
+ <mat-card-title class="ml-16">Address</mat-card-title>
+  <mat-card-content>
+    {{ booking.street }} <br />
+    {{ booking.zipCode }} {{ booking.city }} <br />
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="mt-32">
+  <button
+    mat-icon-button
+    class="pin-right-upper-corner"
+    [matMenuTriggerFor]="guestAddressMenu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #guestAddressMenu="matMenu">
+    <button mat-menu-item (click)="editBooking()">Edit</button>
+  </mat-menu>
+
+  <mat-card-title class="ml-16">Booking details</mat-card-title>
+  <mat-card-content>
+    Apartment: {{ booking.apartment }} <br />
+    Check-In: {{ booking.checkIn }} <br />
+    Check-Out: {{ booking.checkOut }}<br />
+    Length of stay: {{ booking.duration }} Nights <br />
+    Total Price: {{ booking.totalPrice }} € <br />
+  </mat-card-content>
+</mat-card>

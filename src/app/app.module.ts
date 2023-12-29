@@ -6,7 +6,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -35,11 +34,15 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
 import { NgChartsModule } from 'ng2-charts';
 import { DialogEditGuestComponent } from './dialog-edit-guest/dialog-edit-guest.component';
 import { DialogEditGuestAddressComponent } from './dialog-edit-guest-address/dialog-edit-guest-address.component';
+import { DialogEditBookingComponent } from './dialog-edit-booking/dialog-edit-booking.component';
+import { ImprintComponent } from './imprint/imprint.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { PropertyComponent } from './property/property.component';
+import { DialogAddPropertyComponent } from './dialog-add-property/dialog-add-property.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     SignupComponent,
     LoginComponent,
     DashboardComponent,
@@ -50,7 +53,12 @@ import { DialogEditGuestAddressComponent } from './dialog-edit-guest-address/dia
     GuestDetailComponent,
     BookingDetailComponent,
     DialogEditGuestComponent,
-    DialogEditGuestAddressComponent
+    DialogEditGuestAddressComponent,
+    DialogEditBookingComponent,
+    ImprintComponent,
+    PrivacyPolicyComponent,
+    PropertyComponent,
+    DialogAddPropertyComponent
   ],
   imports: [
     BrowserModule,

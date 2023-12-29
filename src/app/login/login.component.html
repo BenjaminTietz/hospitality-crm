@@ -1,8 +1,7 @@
-<button mat-raised-button color="primary" routerLink="/home">
-    Home
-</button>
-
 <mat-card>
+    <mat-card-title>
+        <h1>Login</h1>
+    </mat-card-title>
     <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
         <p>
             <mat-form-field appearance="outline">
@@ -21,6 +20,8 @@
         </div>
 
         <button mat-raised-button color="primary">Login</button>
+        <button type="button"  mat-raised-button color="primary">Guest Login</button>
     </form>
+    <a routerLink="/signup">Need an account?</a>
 </mat-card>
 

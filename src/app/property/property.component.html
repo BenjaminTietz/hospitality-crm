@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-content>
+      <table class="property-table">
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+        <tr *ngFor="let property of allProperties" [routerLink]="['/property/' + property.id]">
+          <td>{{property.name}}</td>
+          <td>{{property.price}}</td>
+
+        </tr>
+      </table>
+  
+    </mat-card-content>
+  </mat-card>
+  
+  
+  
+  <button (click)="openDialog()" class="add-property-btn" mat-fab color="primary" matTooltip="Add property" [matTooltipPosition]="'above'!">
+      <mat-icon>add</mat-icon>
+    </button>

@@ -34,9 +34,9 @@ export class DialogAddBookingComponent {
   }
 
   private formatDate(date: Date): string {
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear().toString();
+    let day = date.getDate().toString().padStart(2, '0');
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let year = date.getFullYear().toString();
     return `${year}-${month}-${day}`;
   }
 
@@ -45,17 +45,17 @@ export class DialogAddBookingComponent {
     this.loading = true;
 
     // Extrahiere Start- und Enddatum aus dem FormGroup
-    const checkInDate = this.range.controls.checkIn.value;
-    const checkOutDate = this.range.controls.checkOut.value;
+    let checkInDate = this.range.controls.checkIn.value;
+    let checkOutDate = this.range.controls.checkOut.value;
 
     // Berechne die Dauer des Aufenthalts in Nächten
-    const duration = checkInDate && checkOutDate ? Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)) : 0;
+    let duration = checkInDate && checkOutDate ? Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)) : 0;
 
     // Bestimme den Preis pro Nacht basierend auf der ausgewählten Wohnung
-    const apartmentPrice = this.apartmentPrices[this.booking.appartment];
+    let apartmentPrice = this.apartmentPrices[this.booking.apartment];
 
     // Berechne den Gesamtpreis
-    const totalPrice = duration * apartmentPrice;
+    let totalPrice = duration * apartmentPrice;
 
     // Weise die berechneten Daten dem booking-Objekt zu
     this.booking.checkIn = checkInDate ? this.formatDate(checkInDate) : '';
@@ -65,7 +65,7 @@ export class DialogAddBookingComponent {
 
     (async () => {
       try {
-        const result = await this.firestore.collection('bookings').add(this.booking.toJSON());
+        let result = await this.firestore.collection('bookings').add(this.booking.toJSON());
         console.log('Adding booking finished', result);
       } catch (error) {
         console.error('Error adding booking', error);

@@ -22,3 +22,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .full-width {
     width: 100%;
 }
+
+.dialog-container {
+    position: relative;
+    margin: 16px 16px 16px 16px;
+    padding: 16px 16px 16px 16px;
+}

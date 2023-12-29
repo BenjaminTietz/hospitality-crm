@@ -1,8 +1,7 @@
-<button mat-raised-button color="primary" routerLink="/home">
-    Home
-</button>
-
 <mat-card>
+    <mat-card-title>
+        <h1>Signup</h1>
+    </mat-card-title>
     <form [formGroup]="signupForm" (ngSubmit)="signup()">
         <p>
             <mat-form-field appearance="outline">
@@ -25,7 +24,7 @@
         <div *ngIf="firebaseErrorMessage != ''" class="error-style">
             <span>{{ firebaseErrorMessage }}</span>
         </div>
-
         <button mat-raised-button color="primary">Signup</button>
     </form>
+    <a routerLink="/login">Already have an account</a>
 </mat-card>

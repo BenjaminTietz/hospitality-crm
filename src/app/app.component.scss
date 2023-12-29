@@ -21,8 +21,17 @@
           height: 48px;
       }
   }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 60px);
+  }
   
   mat-toolbar, mat-toolbar-row {
+    display: flex;
+    justify-content: space-between;
       min-height: 56px;
       height: 56px;
   }

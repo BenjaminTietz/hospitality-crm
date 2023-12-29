@@ -1,0 +1,40 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  
+    <h1 mat-dialog-title>Edit Booking</h1>
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select apartment</mat-label>
+          <mat-select [(ngModel)]="booking.apartment" placeholder="Select apartment">
+            <mat-option *ngFor="let apartment of ['one', 'two', 'three']" [value]="apartment">
+              {{ 'Appartment ' + apartment + ' - €' + apartmentPrices[apartment] + ' per night' }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input matStartDate formControlName="checkIn" placeholder="Check-in">
+            <input matEndDate formControlName="checkOut" placeholder="Check-out">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        
+          @if (range.controls.checkIn.hasError('matStartDateInvalid')) {
+            <mat-error>Invalid start date</mat-error>
+          }
+          @if (range.controls.checkOut.hasError('matEndDateInvalid')) {
+            <mat-error>Invalid end date</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button [disabled]="loading" mat-button (click)="this.dialogRef.close()">Cancel</button>
+      <button [disabled]="loading" (click)="saveBooking()" mat-button cdkFocusInitial>Save</button>
+    </div>
+  </div>

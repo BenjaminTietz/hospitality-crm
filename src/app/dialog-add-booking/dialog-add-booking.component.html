@@ -54,7 +54,7 @@
       <div>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Select apartment</mat-label>
-          <mat-select [(ngModel)]="booking.appartment" placeholder="Select apartment">
+          <mat-select [(ngModel)]="booking.apartment" placeholder="Select apartment">
             <mat-option *ngFor="let apartment of ['one', 'two', 'three']" [value]="apartment">
               {{ 'Appartment ' + apartment + ' - €' + apartmentPrices[apartment] + ' per night' }}
             </mat-option>

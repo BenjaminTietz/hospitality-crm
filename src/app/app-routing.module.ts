@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -11,19 +9,24 @@ import { GuestComponent } from './guest/guest.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { GuestDetailComponent } from './guest-detail/guest-detail.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
+import { ImprintComponent } from './imprint/imprint.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { PropertyComponent } from './property/property.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-    { path: 'guests', component: GuestComponent },
-    { path: 'guests/:id', component: GuestDetailComponent },
-    { path: 'bookings', component: BookingsComponent },
-    { path: 'bookings/:id', component: BookingDetailComponent },
-
-    { path: '**', component: HomeComponent },                       // catch-all in case no other path matched
+    { path: 'properties', component: PropertyComponent, canActivate: [AuthGuard] },
+    { path: 'guests', component: GuestComponent, canActivate: [AuthGuard]  },
+    { path: 'guests/:id', component: GuestDetailComponent, canActivate: [AuthGuard]  },
+    { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard]  },
+    { path: 'bookings/:id', component: BookingDetailComponent, canActivate: [AuthGuard]  },
+    { path: 'imprint', component: ImprintComponent },
+    { path: 'privacy-policy', component: PrivacyPolicyComponent },
+    { path: 'login', component: LoginComponent },
+    { path: '**', component: LoginComponent },                       // catch-all in case no other path matched
 ];
 
 @NgModule({
