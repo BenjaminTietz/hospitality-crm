@@ -12,6 +12,7 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
 import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { PropertyComponent } from './property/property.component';
+import { PropertyDetailComponent } from './property-detail/property-detail.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'properties', component: PropertyComponent, canActivate: [AuthGuard] },
+    { path: 'properties/:id', component: PropertyDetailComponent, canActivate: [AuthGuard]  },
     { path: 'guests', component: GuestComponent, canActivate: [AuthGuard]  },
     { path: 'guests/:id', component: GuestDetailComponent, canActivate: [AuthGuard]  },
     { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard]  },

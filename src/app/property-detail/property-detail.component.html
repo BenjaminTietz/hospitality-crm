@@ -1,0 +1,36 @@
+<mat-card class="property-detail-header">
+    <button
+    mat-icon-button
+    class="pin-right-upper-corner"
+    [matMenuTriggerFor]="guestMenu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #guestMenu="matMenu">
+    <button mat-menu-item (click)="editPropertyDetail()" >Edit</button>
+  </mat-menu>
+  <img class="ml-16 mb-16" src="./assets/img/hotel.png" />
+  <div class="property-details">
+    {{ property.name }}
+  </div>
+</mat-card>
+
+<mat-card class="mt-32">
+  <button
+    mat-icon-button
+    class="pin-right-upper-corner"
+    [matMenuTriggerFor]="guestAddressMenu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #guestAddressMenu="matMenu">
+    <button mat-menu-item (click)="editProperty()" >Edit</button>
+  </mat-menu>
+
+  <mat-card-title class="ml-16">Address</mat-card-title>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>

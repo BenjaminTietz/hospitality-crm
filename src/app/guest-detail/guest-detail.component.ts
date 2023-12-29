@@ -36,10 +36,6 @@ export class GuestDetailComponent implements OnInit {
     });
   }
 
-  openAddressDialog() {
-
-  }
-
   editGuest() {
     const dialog = this.dialog.open(DialogEditGuestAddressComponent);
     dialog.componentInstance.guest = new Guests(this.guest.toJSON());

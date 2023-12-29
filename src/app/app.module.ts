@@ -39,6 +39,8 @@ import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { PropertyComponent } from './property/property.component';
 import { DialogAddPropertyComponent } from './dialog-add-property/dialog-add-property.component';
+import { DialogEditPropertyComponent } from './dialog-edit-property/dialog-edit-property.component';
+import { PropertyDetailComponent } from './property-detail/property-detail.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { DialogAddPropertyComponent } from './dialog-add-property/dialog-add-pro
     ImprintComponent,
     PrivacyPolicyComponent,
     PropertyComponent,
-    DialogAddPropertyComponent
+    DialogAddPropertyComponent,
+    DialogEditPropertyComponent,
+    PropertyDetailComponent
   ],
   imports: [
     BrowserModule,

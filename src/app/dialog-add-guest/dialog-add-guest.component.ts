@@ -1,7 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Guests } from '../../models/guests.class';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 
