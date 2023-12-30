@@ -41,6 +41,7 @@ import { PropertyComponent } from './property/property.component';
 import { DialogAddPropertyComponent } from './dialog-add-property/dialog-add-property.component';
 import { DialogEditPropertyComponent } from './dialog-edit-property/dialog-edit-property.component';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PropertyDetailComponent } from './property-detail/property-detail.compo
     PropertyComponent,
     DialogAddPropertyComponent,
     DialogEditPropertyComponent,
-    PropertyDetailComponent
+    PropertyDetailComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

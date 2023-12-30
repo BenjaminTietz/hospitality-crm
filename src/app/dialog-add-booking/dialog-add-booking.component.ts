@@ -1,16 +1,17 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Bookings } from '../../models/bookings.class';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Properties } from '../../models/properties.class';
+import { Guests } from '../../models/guests.class'; // Importiere die Guests-Klasse
 
 @Component({
   selector: 'app-dialog-add-booking',
   templateUrl: './dialog-add-booking.component.html',
   styleUrls: ['./dialog-add-booking.component.scss']
 })
-export class DialogAddBookingComponent {
+export class DialogAddBookingComponent implements OnInit {
 
   range = new FormGroup({
     checkIn: new FormControl<Date | null>(null),
@@ -23,15 +24,7 @@ export class DialogAddBookingComponent {
 
   properties: Properties[] = [];
 
-  apartmentPrices: { [key: string]: number } = {
-    one: 100,
-    two: 150,
-    three: 120,
-  };
-
-  constructor(public dialogRef: MatDialogRef<DialogAddBookingComponent>, private firestore: AngularFirestore) {
-
-  }
+  constructor(public dialogRef: MatDialogRef<DialogAddBookingComponent>, private firestore: AngularFirestore) {}
 
   ngOnInit(): void {
     this.fetchProperties();
@@ -47,35 +40,51 @@ export class DialogAddBookingComponent {
   saveBooking() {
     console.log(this.booking);
     this.loading = true;
-  
+
     // Extrahiere Start- und Enddatum aus dem FormGroup
     let checkInDate = this.range.controls.checkIn.value;
     let checkOutDate = this.range.controls.checkOut.value;
-  
+
     // Berechne die Dauer des Aufenthalts in Nächten
     let duration = checkInDate && checkOutDate ? Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)) : 0;
-  
+
     // Finde das entsprechende Apartment in den Properties
     let selectedApartment = this.properties.find(property => property.name === this.booking.apartment);
-  
+
     // Überprüfe, ob das Apartment gefunden wurde
     if (selectedApartment) {
       // Berechne den Gesamtpreis basierend auf dem Preis pro Nacht aus der Datenbank
       let totalPrice = duration * selectedApartment.price;
-  
+
       // Weise die berechneten Daten dem booking-Objekt zu
       this.booking.checkIn = checkInDate ? this.formatDate(checkInDate) : '';
       this.booking.checkOut = checkOutDate ? this.formatDate(checkOutDate) : '';
       this.booking.duration = duration;
       this.booking.totalPrice = totalPrice;
-  
+
       // Füge das Buchungsobjekt zur Firestore-Sammlung hinzu
       (async () => {
         try {
-          let result = await this.firestore.collection('bookings').add(this.booking.toJSON());
-          console.log('Adding booking finished', result);
+          // Erstelle das Booking-Dokument in der "bookings"-Sammlung
+          let bookingResult = await this.firestore.collection('bookings').add(this.booking.toJSON());
+          console.log('Adding booking finished', bookingResult);
+
+          // Extrahiere die Gästedaten
+          let guestData = new Guests({
+            firstName: this.booking.firstName,
+            lastName: this.booking.lastName,
+            email: this.booking.email,
+            street: this.booking.street,
+            zipCode: this.booking.zipCode,
+            city: this.booking.city,
+            country: "Deutschland"  // Annahme: Das Land ist immer Deutschland
+          });
+
+          // Erstelle das Gäste-Dokument in der "guests"-Sammlung
+          let guestResult = await this.firestore.collection('guests').add(guestData.toJSON());
+          console.log('Adding guest finished', guestResult);
         } catch (error) {
-          console.error('Error adding booking', error);
+          console.error('Error adding booking or guest', error);
         }
         this.loading = false;
         this.dialogRef.close();
@@ -88,11 +97,7 @@ export class DialogAddBookingComponent {
 
   fetchProperties() {
     this.firestore.collection<Properties>('properties').valueChanges().subscribe((properties: Properties[]) => {
-      this.properties = properties as Properties[]; // Update the type of 'properties' to be an array of 'Properties' objects
+      this.properties = properties as Properties[];
     });
   }
 }
-
-
-
-
