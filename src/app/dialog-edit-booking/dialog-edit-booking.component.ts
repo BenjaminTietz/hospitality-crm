@@ -3,12 +3,12 @@ import { Bookings } from '../../models/bookings.class';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { Properties } from '../../models/properties.class';
 
 @Component({
   selector: 'app-dialog-edit-booking',
   templateUrl: './dialog-edit-booking.component.html',
-  styleUrl: './dialog-edit-booking.component.scss'
+  styleUrls: ['./dialog-edit-booking.component.scss']
 })
 export class DialogEditBookingComponent implements OnInit {
 
@@ -18,23 +18,19 @@ export class DialogEditBookingComponent implements OnInit {
     pricePerNight: new FormControl<number>(0),
   });
 
-  apartmentPrices: { [key: string]: number } = {
-    one: 100,
-    two: 150,
-    three: 120,
-  };
-
   loading = false;
   booking = new Bookings();
-  bookingId:  string | undefined;
+  bookingId: string | undefined;
+
+  properties: Properties[] = [];
 
   constructor(public dialogRef: MatDialogRef<DialogEditBookingComponent>, private firestore: AngularFirestore) { }
 
-  
   ngOnInit(): void {
-
+    // Lade die Daten aus der "properties"-Sammlung
+    this.fetchProperties();
   }
-  
+
   private formatDate(date: Date): string {
     let day = date.getDate().toString().padStart(2, '0');
     let month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -44,38 +40,54 @@ export class DialogEditBookingComponent implements OnInit {
 
   saveBooking() {
     this.loading = true;
-    
+
     // Übernehme die Werte aus dem FormGroup ins booking-Objekt
     this.booking.checkIn = this.formatDate(this.range.controls.checkIn.value!);
     this.booking.checkOut = this.formatDate(this.range.controls.checkOut.value!);
-    
+
     // Berechne die Dauer des Aufenthalts in Nächten
     let checkInDate = new Date(this.booking.checkIn);
     let checkOutDate = new Date(this.booking.checkOut);
     let duration = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
-    
-    // Bestimme den Preis pro Nacht basierend auf der ausgewählten Wohnung
-    let apartmentPrice = this.apartmentPrices[this.booking.apartment];
-  
-    // Berechne den Gesamtpreis
-    let totalPrice = duration * apartmentPrice;
-  
-    // Aktualisiere die Werte im booking-Objekt
-    this.booking.duration = duration;
-    this.booking.totalPrice = totalPrice;
-  
-    // Füge weitere Werte hinzu, die du aktualisieren möchtest
-  
-    this.firestore.collection('bookings')
-      .doc(this.bookingId)
-      .update(this.booking.toJSON())
-      .then(() => {
-        this.loading = false;
-        this.dialogRef.close();
-      })
-      .catch((error) => {
-        this.loading = false;
-        console.log('Error updating booking', error);
-      });
+
+    // Finde das entsprechende Apartment in den Properties
+    let selectedApartment = this.properties.find(property => property.name === this.booking.apartment);
+
+    // Überprüfe, ob das Apartment gefunden wurde
+    if (selectedApartment) {
+      // Verwende den Preis pro Nacht aus der Datenbank
+      let apartmentPrice = selectedApartment.price;
+
+      // Berechne den Gesamtpreis
+      let totalPrice = duration * apartmentPrice;
+
+      // Aktualisiere die Werte im booking-Objekt
+      this.booking.duration = duration;
+      this.booking.totalPrice = totalPrice;
+
+      // Füge weitere Werte hinzu, die du aktualisieren möchtest
+
+      // Aktualisiere das Buchungsobjekt in der Firestore-Sammlung
+      this.firestore.collection('bookings')
+        .doc(this.bookingId)
+        .update(this.booking.toJSON())
+        .then(() => {
+          this.loading = false;
+          this.dialogRef.close();
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.log('Error updating booking', error);
+        });
+    } else {
+      console.error('Selected apartment not found in properties.');
+      this.loading = false;
+    }
+  }
+
+  fetchProperties() {
+    this.firestore.collection<Properties>('properties').valueChanges().subscribe((properties: Properties[]) => {
+      this.properties = properties as Properties[]; // Update the type of 'properties' to be an array of 'Properties' objects
+    });
   }
 }
