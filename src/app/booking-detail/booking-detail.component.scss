@@ -1,4 +1,5 @@
 .booking-detail-header {
+    position: relative;
     min-height: 250px;
     background-color: #ff5b27;
     color: white;
@@ -32,4 +33,10 @@
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
 }

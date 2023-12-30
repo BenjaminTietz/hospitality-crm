@@ -24,7 +24,6 @@ export class PropertyComponent {
     .collection('properties')
     .valueChanges({ idField: 'id'})
     .subscribe((changes: any) => {
-      console.log('Recived changes from database:', changes);
       this.allProperties = changes;
     });
   }

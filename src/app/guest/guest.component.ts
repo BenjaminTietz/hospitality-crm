@@ -12,8 +12,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class GuestComponent {
 
   guest:Guests = new Guests();  // variable user is of type User (: User in this case its any) and is a new instance of User class
-  
   allGuests:any = [];
+
+
 
   constructor(public dialog: MatDialog, private firestore: AngularFirestore) {
 
@@ -24,7 +25,6 @@ export class GuestComponent {
     .collection('guests')
     .valueChanges({ idField: 'id'})
     .subscribe((changes: any) => {
-      console.log('Recived changes from database:', changes);
       this.allGuests = changes;
     });
   }
@@ -32,5 +32,17 @@ export class GuestComponent {
 
   openDialog() {
     this.dialog.open(DialogAddGuestComponent);
+  }
+
+  deleteGuest(event: Event, guest: Guests, guestId: string) {
+    event.stopPropagation();  
+    if (guest) {
+      this.firestore.collection('guests').doc(guestId).delete().then(() => {
+      }).catch((error) => {
+        console.error('Error deleting guest:', error);
+      });
+    } else {
+      console.error('Guest ID is missing.');
+    }
   }
 }

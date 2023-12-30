@@ -1,4 +1,7 @@
 <mat-card class="booking-detail-header">
+  <button (click)="deleteBooking($event,booking)" class="delete-btn" mat-mini-fab color="primary" matTooltip="Delete booking" [matTooltipPosition]="'above'!">
+    <mat-icon>delete</mat-icon>
+  </button>
   <img class="ml-16 mb-16" src="./assets/img/booking.png" />
   <div class="booking-details">
     <h2>{{ booking.firstName }} {{ booking.lastName }}</h2>

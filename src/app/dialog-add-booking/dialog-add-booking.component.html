@@ -56,7 +56,7 @@
           <mat-label>Select apartment</mat-label>
           <mat-select [(ngModel)]="booking.apartment" placeholder="Select apartment">
             <mat-option *ngFor="let property of properties" [value]="property.name">
-              {{ 'Apartment ' + property.name + ' - €' + property.price + ' per night' }}
+              {{ property.name + ' - €' + property.price + ' per night' }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -72,12 +72,10 @@
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
         
-          @if (range.controls.checkIn.hasError('matStartDateInvalid')) {
-            <mat-error>Invalid start date</mat-error>
-          }
-          @if (range.controls.checkOut.hasError('matEndDateInvalid')) {
-            <mat-error>Invalid end date</mat-error>
-          }
+          <!-- Display error message if checkIn or checkOut are in the past -->
+          <mat-error *ngIf="range.controls.checkIn.hasError('pastDate') || range.controls.checkOut.hasError('pastDate')">
+            Date cannot be in the past
+          </mat-error>
         </mat-form-field>
       </div>
     </div>

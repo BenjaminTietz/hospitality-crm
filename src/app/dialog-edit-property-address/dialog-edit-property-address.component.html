@@ -1,26 +1,8 @@
 <div class="dialog-container">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
   
-    <h1 mat-dialog-title>Add Property</h1>
+    <h1 mat-dialog-title>Edit Property</h1>
     <div mat-dialog-content>
-      <div>
-        <mat-form-field class="mr-16" appearance="outline">
-          <mat-label>Name</mat-label>
-          <input
-          [disabled]="loading"
-            [(ngModel)]="property.name"
-            matInput
-            placeholder="Name"
-          />
-          <!-- <mat-hint>Please enter a name</mat-hint> -->
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Price</mat-label>
-          <input [disabled]="loading" [(ngModel)]="property.price" matInput placeholder="Last Name" />
-          <!-- <mat-hint>Please enter a Price</mat-hint> -->
-        </mat-form-field>
-      </div>
       <div>
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Street + House No.</mat-label>
@@ -46,24 +28,6 @@
           <mat-label>Country</mat-label>
           <input [disabled]="loading" [(ngModel)]="property.country" matInput placeholder="Country" />
           <!-- <mat-hint>Please enter a country</mat-hint> -->
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field ppearance="outline" class="full-width">
-          <mat-label>Amenities</mat-label>
-          <mat-select [formControl]="amenities" multiple>
-            <mat-select-trigger>
-              {{amenities.value?.[0] || ''}}
-              @if ((amenities.value?.length || 0) > 1) {
-                <span class="example-additional-selection">
-                  (+{{(amenities.value?.length || 0) - 1}} {{amenities.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              }
-            </mat-select-trigger>
-            @for (amenity of amenitiesList; track amenity) {
-              <mat-option [value]="amenity">{{amenity}}</mat-option>
-            }
-          </mat-select>
         </mat-form-field>
       </div>
     </div>

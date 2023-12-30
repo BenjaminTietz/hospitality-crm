@@ -36,6 +36,7 @@ mat-card-content {
         &:hover {
             background-color: rgba(0, 0, 0, 0.04);
         }
+
     }
 
     th {
@@ -49,3 +50,12 @@ mat-card-content {
         }
     }
 }
+
+
+.delete-btn .contact-btn{
+    width: 24px;
+    height: 24px;
+    margin-top: 12px;
+    margin-right: 16px;
+}
+

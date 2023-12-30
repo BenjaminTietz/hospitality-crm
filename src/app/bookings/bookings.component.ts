@@ -24,7 +24,6 @@ export class BookingsComponent {
     .collection('bookings')
     .valueChanges({ idField: 'id'})
     .subscribe((changes: any) => {
-      console.log('Recived changes from database:', changes);
       this.allBookings = changes;
     });
   }
@@ -34,8 +33,3 @@ export class BookingsComponent {
     this.dialog.open(DialogAddBookingComponent);
   }
 }
-
-
-
-
-

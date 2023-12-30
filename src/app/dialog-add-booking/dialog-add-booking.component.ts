@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Bookings } from '../../models/bookings.class';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Properties } from '../../models/properties.class';
-import { Guests } from '../../models/guests.class'; // Importiere die Guests-Klasse
+import { Guests } from '../../models/guests.class';
 
 @Component({
   selector: 'app-dialog-add-booking',
@@ -14,8 +14,8 @@ import { Guests } from '../../models/guests.class'; // Importiere die Guests-Kla
 export class DialogAddBookingComponent implements OnInit {
 
   range = new FormGroup({
-    checkIn: new FormControl<Date | null>(null),
-    checkOut: new FormControl<Date | null>(null),
+    checkIn: new FormControl<Date | null>(null, [Validators.required, this.futureDateValidator]),
+    checkOut: new FormControl<Date | null>(null, [Validators.required, this.futureDateValidator]),
     pricePerNight: new FormControl<number>(0),
   });
 
@@ -67,7 +67,6 @@ export class DialogAddBookingComponent implements OnInit {
         try {
           // Erstelle das Booking-Dokument in der "bookings"-Sammlung
           let bookingResult = await this.firestore.collection('bookings').add(this.booking.toJSON());
-          console.log('Adding booking finished', bookingResult);
 
           // Extrahiere die Gästedaten
           let guestData = new Guests({
@@ -82,7 +81,6 @@ export class DialogAddBookingComponent implements OnInit {
 
           // Erstelle das Gäste-Dokument in der "guests"-Sammlung
           let guestResult = await this.firestore.collection('guests').add(guestData.toJSON());
-          console.log('Adding guest finished', guestResult);
         } catch (error) {
           console.error('Error adding booking or guest', error);
         }
@@ -99,5 +97,17 @@ export class DialogAddBookingComponent implements OnInit {
     this.firestore.collection<Properties>('properties').valueChanges().subscribe((properties: Properties[]) => {
       this.properties = properties as Properties[];
     });
+  }
+
+  private futureDateValidator(control: FormControl): { [key: string]: any } | null {
+    const selectedDate = control.value;
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Setze die Zeit des aktuellen Datums auf Mitternacht
+  
+    if (selectedDate && selectedDate < currentDate) {
+      return { 'pastDate': true };  // Validierungsfehler, wenn das Datum in der Vergangenheit liegt
+    }
+  
+    return null;  // Kein Validierungsfehler
   }
 }

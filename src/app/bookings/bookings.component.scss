@@ -1,6 +1,7 @@
 mat-card-content {	
     padding-left: 0;
     padding-right: 0;
+    width: 100%!important;
 }
 .add-booking-btn {
     position: absolute;
@@ -9,11 +10,11 @@ mat-card-content {
 }
 
 .booking-table {
-    width: 100%;
+    width: 100%!important;
     border-collapse: collapse;
     tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-
+        width: 100%!important;
         &:first-child {
             cursor: unset;
             &:hover {

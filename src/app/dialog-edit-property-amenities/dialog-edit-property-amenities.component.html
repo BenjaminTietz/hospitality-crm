@@ -1,0 +1,30 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  
+    <h1 mat-dialog-title>Edit Amenities</h1>
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field ppearance="outline" class="full-width">
+          <mat-label>Amenities</mat-label>
+          <mat-select [formControl]="amenities" multiple>
+            <mat-select-trigger>
+              {{amenities.value?.[0] || ''}}
+              @if ((amenities.value?.length || 0) > 1) {
+                <span class="example-additional-selection">
+                  (+{{(amenities.value?.length || 0) - 1}} {{amenities.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              }
+            </mat-select-trigger>
+            @for (amenity of amenitiesList; track amenity) {
+              <mat-option [value]="amenity">{{amenity}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button [disabled]="loading" mat-button (click)="this.dialogRef.close()">Cancel</button>
+      <button [disabled]="loading" (click)="saveProperty()" mat-button cdkFocusInitial>Save</button>
+    </div>
+  </div>
+

@@ -1,25 +1,27 @@
 <mat-card>
-    <mat-card-content>
-      <table class="guest-table">
-        <tr>
-          <th>Name</th>
-          <th>E-Mail</th>
-          <th>City</th>
-          <th>Country</th>
-        </tr>
-        <tr *ngFor="let guest of allGuests" [routerLink]="['/guests/' + guest.id]">
-          <td>{{guest.firstName}} {{guest.lastName}}</td>
-          <td>{{guest.email}}</td>
-          <td>{{guest.city}}</td>
-          <td>{{guest.country}}</td>
-        </tr>
-      </table>
-  
-    </mat-card-content>
-  </mat-card>
-  
-  
-  
-  <button (click)="openDialog()" class="add-guest-btn" mat-fab color="primary" matTooltip="Add guest" [matTooltipPosition]="'above'!">
-      <mat-icon>add</mat-icon>
-    </button>
+  <mat-card-content>
+    <table class="guest-table">
+      <tr>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>City</th>
+        <th>Country</th>
+      </tr>
+      <tr [routerLink]="['/guests/' + guest.id]" *ngFor="let guest of allGuests">
+        <td >{{guest.firstName}} {{guest.lastName}}</td>
+        <td>{{guest.email}}</td>
+        <td>{{guest.city}}</td>
+        <td>{{guest.country}}</td>
+        <td>
+          <button class="delete-btn" (click)="deleteGuest($event,guest, guest.id)" mat-mini-fab color="primary" matTooltip="Delete guest" [matTooltipPosition]="'left'!">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<button (click)="openDialog()" class="add-guest-btn" mat-fab color="primary" matTooltip="Add guest" [matTooltipPosition]="'above'!">
+  <mat-icon>add</mat-icon>
+</button>

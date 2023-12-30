@@ -24,11 +24,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { GuestComponent } from './guest/guest.component';
 import { DialogAddGuestComponent } from './dialog-add-guest/dialog-add-guest.component';
 import { DialogAddBookingComponent } from './dialog-add-booking/dialog-add-booking.component';
 import { BookingsComponent } from './bookings/bookings.component';
-import { MatSelectModule } from '@angular/material/select';
 import { GuestDetailComponent } from './guest-detail/guest-detail.component';
 import { BookingDetailComponent } from './booking-detail/booking-detail.component';
 import { NgChartsModule } from 'ng2-charts';
@@ -42,6 +45,9 @@ import { DialogAddPropertyComponent } from './dialog-add-property/dialog-add-pro
 import { DialogEditPropertyComponent } from './dialog-edit-property/dialog-edit-property.component';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
 import { InfoComponent } from './info/info.component';
+import { DialogEditPropertyAddressComponent } from './dialog-edit-property-address/dialog-edit-property-address.component';
+import { DialogEditPropertyAmenitiesComponent } from './dialog-edit-property-amenities/dialog-edit-property-amenities.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +70,9 @@ import { InfoComponent } from './info/info.component';
     DialogAddPropertyComponent,
     DialogEditPropertyComponent,
     PropertyDetailComponent,
-    InfoComponent
+    InfoComponent,
+    DialogEditPropertyAddressComponent,
+    DialogEditPropertyAmenitiesComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +97,10 @@ import { InfoComponent } from './info/info.component';
     MatToolbarModule,
     MatSelectModule,
     NgChartsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

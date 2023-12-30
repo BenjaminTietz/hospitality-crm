@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener  } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { getAuth, signOut } from "firebase/auth";
@@ -14,13 +14,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {}
 
   logout() {
-    // [START auth_sign_out]
     console.log('logout');
     this.afAuth.signOut().then(() => {
-      // Sign-out successful.
     }).catch((error) => {
-      // An error happened.
+      console.log(error);
     });
-    // [END auth_sign_out]
   }
 }
