@@ -4,12 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bookings } from '../../models/bookings.class';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditBookingComponent } from '../dialog-edit-booking/dialog-edit-booking.component';
-
+import { ChartService } from '../services/chart.service'; // Import des ChartService
 
 @Component({
   selector: 'app-booking-detail',
   templateUrl: './booking-detail.component.html',
-  styleUrl: './booking-detail.component.scss',
+  styleUrls: ['./booking-detail.component.scss'],
 })
 export class BookingDetailComponent implements OnInit {
   bookingId = '';
@@ -19,7 +19,8 @@ export class BookingDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private chartService: ChartService // Injizieren Sie den ChartService
   ) {}
 
   ngOnInit(): void {
@@ -43,13 +44,19 @@ export class BookingDetailComponent implements OnInit {
     const dialog = this.dialog.open(DialogEditBookingComponent);
     dialog.componentInstance.booking = new Bookings(this.booking.toJSON());
     dialog.componentInstance.bookingId = this.bookingId;
+
+    // Nach dem Schließen des Dialogs (wenn die Buchung aktualisiert wurde), rufen Sie die Methode auf
+    dialog.afterClosed().subscribe(() => {
+      this.chartService.destroyChart();
+    });
   }
 
   deleteBooking(event: Event, booking: Bookings) {
-    event.stopPropagation();  
+    event.stopPropagation();
     if (booking) {
       this.firestore.collection('bookings').doc(this.bookingId).delete().then(() => {
-      this.router.navigate(['/bookings']);
+        this.router.navigate(['/bookings']);
+        this.chartService.destroyChart(); // Nach dem Löschen der Buchung aufrufen
       }).catch((error) => {
         console.error('Error deleting booking:', error);
       });

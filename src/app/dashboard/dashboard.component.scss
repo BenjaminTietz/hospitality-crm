@@ -1,5 +1,47 @@
 .add-booking-btn {
-    position: absolute;
-    right: 56px;
-    bottom: 56px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.dashboard-wrapper {
+  position: relative;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+
+    &:first-child {
+      cursor: unset;
+      &:hover {
+        background-color: unset;
+      }
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    td {
+      height: 48px;
+
+      &:first-child {
+        padding-left: 16px;
+      }
+    }
+  }
+
+  th {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: start;
+
+    &:first-child {
+      padding-left: 16px;
+    }
+  }
 }

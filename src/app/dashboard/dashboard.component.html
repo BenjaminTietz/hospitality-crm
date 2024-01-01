@@ -1,17 +1,46 @@
-<div>
-<mat-card>
-  <mat-card-content> Platz für Diagramm </mat-card-content>
-</mat-card>
+<div class="dashboard-wrapper">
+  <mat-card>
+    <mat-card-content>
+      <h3>Income per property:</h3>
+      <canvas #bookingChart></canvas>
+    </mat-card-content>
+  </mat-card>
 
-<mat-card>
-    <mat-card-content> Booking numbers  </mat-card-content>
-</mat-card>
+  <mat-card class="mt-32">
+    <mat-card-content>
+      <h3>Booking numbers:</h3>
+      <table class="booking-table">
+        <tr>
+          <th>Property</th>
+          <th>Total Bookings</th>
+          <th>Booked Nights</th>
+          <th>Total Income (€)</th>
+        </tr>
+        <tr *ngFor="let apartment of bookingCounts | keyvalue">
+          <td>{{ apartment.key }}</td>
+          <td>{{ apartment.value }}</td>
+          <td>{{ totalNights[apartment.key] }}</td>
+          <td>{{ totalIncome[apartment.key] }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
 
-<mat-card>
-    <mat-card-content> Booking value  </mat-card-content>
-</mat-card>
+  <mat-card class="mt-32 mb-32">
+    <mat-card-content>
+      <h3>Booking value:</h3>
+      Total rental income: {{ totalBookingIncome }} €
+    </mat-card-content>
+  </mat-card>
+
+  <button
+    (click)="openDialog()"
+    class="add-booking-btn"
+    mat-fab
+    color="primary"
+    matTooltip="Add booking"
+    [matTooltipPosition]="'above'!"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
-
-<button (click)="openDialog()" class="add-booking-btn" mat-fab color="primary" matTooltip="Add booking" [matTooltipPosition]="'above'!">
-  <mat-icon>add</mat-icon>
-</button>
