@@ -3,24 +3,39 @@
         <h1>Login</h1>
     </mat-card-title>
     <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
-        <p>
+        <div class="input-container">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input autocomplete="off" formControlName="email" type="email" matInput placeholder="Email">
             </mat-form-field>
-        </p>
-        <p>
+            <span
+            *ngIf="
+            loginForm.get('password')?.invalid  &&
+            (loginForm.get('email')?.dirty ||
+            loginForm.get('email')?.touched)"
+            class="error-style">
+                Please enter a valid email
+            </span>
+        </div>
+        <div class="input-container">
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
             </mat-form-field>
-        </p>
+            <span
+            *ngIf="
+            loginForm.get('password')?.invalid  &&
+            (loginForm.get('password')?.dirty ||
+            loginForm.get('password')?.touched)"
+            class="error-style">
+                Please enter a valid password (min 6 characters)
+            </span>
+        </div>
         <div *ngIf="firebaseErrorMessage != ''" class="error-style">
             <span>{{ firebaseErrorMessage }}</span>
         </div>
 
-        <button mat-raised-button color="primary">Login</button>
-        <button type="button"  mat-raised-button color="primary">Guest Login</button>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
     </form>
     <a routerLink="/signup">Need an account?</a>
 </mat-card>

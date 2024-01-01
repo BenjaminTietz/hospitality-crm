@@ -3,28 +3,52 @@
         <h1>Signup</h1>
     </mat-card-title>
     <form [formGroup]="signupForm" (ngSubmit)="signup()">
-        <p>
+        <div class="input-container">
             <mat-form-field appearance="outline">
                 <mat-label>Full Name</mat-label>
                 <input autocomplete="off" formControlName="displayName" type="text" matInput placeholder="Display Name">
             </mat-form-field>
-        </p>
-        <p>
+            <span
+            *ngIf="
+            signupForm.get('displayName')?.hasError('required') &&
+            (signupForm.get('displayName')?.dirty ||
+            signupForm.get('displayName')?.touched)"
+            class="error-style">
+                Please enter your full name
+            </span>
+        </div>
+    <div class="input-container">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input formControlName="email" type="email" matInput placeholder="Email">
             </mat-form-field>
-        </p>
-        <p>
+            <span
+            *ngIf="
+            signupForm.get('password')?.invalid  &&
+            (signupForm.get('email')?.dirty ||
+            signupForm.get('email')?.touched)"
+            class="error-style">
+                Please enter a valid email
+            </span>
+    </div>
+        <div class="input-container">
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
             </mat-form-field>
-        </p>
+            <span
+            *ngIf="
+            signupForm.get('password')?.invalid  &&
+            (signupForm.get('password')?.dirty ||
+            signupForm.get('password')?.touched)"
+            class="error-style">
+                Please enter a valid password (min 6 characters)
+            </span>
+    </div>
         <div *ngIf="firebaseErrorMessage != ''" class="error-style">
             <span>{{ firebaseErrorMessage }}</span>
         </div>
-        <button mat-raised-button color="primary">Signup</button>
+        <button mat-raised-button color="primary" [disabled]="!signupForm.valid">Signup</button>
     </form>
     <a routerLink="/login">Already have an account?</a>
 </mat-card>

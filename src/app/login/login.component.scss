@@ -32,3 +32,21 @@ h1 {
   text-align: center;
   color: rgba(0, 0, 0, 0.87);
 }
+
+mat-form-field {
+  height: 64px;
+}
+
+.error-style {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+
+.input-container{
+display: flex;
+flex-direction: column;
+}
