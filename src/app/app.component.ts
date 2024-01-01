@@ -1,15 +1,21 @@
-import { Component, OnInit, HostListener  } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { getAuth, signOut } from "firebase/auth";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(public afAuth: AngularFireAuth, private router: Router) {}
+  @ViewChild('drawer') drawer: MatDrawer | undefined;
+
+  constructor(
+    public afAuth: AngularFireAuth,
+    private router: Router,
+    private cdr: ChangeDetectorRef // Fügen Sie ChangeDetectorRef hinzu
+  ) {}
 
   ngOnInit(): void {}
 
@@ -19,5 +25,29 @@ export class AppComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkWindowWidth();
+  }
+
+  ngAfterViewInit() {
+    this.checkWindowWidth();
+  }
+
+  private checkWindowWidth() {
+    if (this.drawer) {
+      let windowWidth = window.innerWidth;
+
+      if (windowWidth <= 1000) {
+        this.drawer.close();
+        this.cdr.detectChanges(); 
+      }
+      if (windowWidth > 1000) {
+        this.drawer.open();
+        this.cdr.detectChanges(); 
+      }
+    }
   }
 }

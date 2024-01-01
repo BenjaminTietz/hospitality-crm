@@ -12,13 +12,13 @@
       <table class="booking-table">
         <tr>
           <th>Property</th>
-          <th>Total Bookings</th>
+          <th class="mobile-display-none">Total Bookings</th>
           <th>Booked Nights</th>
           <th>Total Income (€)</th>
         </tr>
         <tr *ngFor="let apartment of bookingCounts | keyvalue">
           <td>{{ apartment.key }}</td>
-          <td>{{ apartment.value }}</td>
+          <td class="mobile-display-none">{{ apartment.value }}</td>
           <td>{{ totalNights[apartment.key] }}</td>
           <td>{{ totalIncome[apartment.key] }}</td>
         </tr>

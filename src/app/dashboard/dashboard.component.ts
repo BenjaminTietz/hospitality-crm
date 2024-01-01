@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   prepareChartData() {
-    let apartmentTotals: { [key: string]: number } = {};
+    let propertyTotals: { [key: string]: number } = {};
 
     this.bookingCounts = {};
     this.totalNights = {};
@@ -57,23 +57,23 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.totalBookingIncome = 0;
 
     this.bookingData.forEach((booking) => {
-      let apartment = booking.apartment;
+      let property = booking.property;
       let totalPrice = booking.totalPrice;
       let duration = booking.duration;
 
-      this.bookingCounts[apartment] = (this.bookingCounts[apartment] || 0) + 1;
-      this.totalNights[apartment] = (this.totalNights[apartment] || 0) + duration;
-      this.totalIncome[apartment] = (this.totalIncome[apartment] || 0) + totalPrice;
+      this.bookingCounts[property] = (this.bookingCounts[property] || 0) + 1;
+      this.totalNights[property] = (this.totalNights[property] || 0) + duration;
+      this.totalIncome[property] = (this.totalIncome[property] || 0) + totalPrice;
       this.totalBookingIncome += totalPrice;
 
-      if (apartmentTotals[apartment]) {
-        apartmentTotals[apartment] += totalPrice;
+      if (propertyTotals[property]) {
+        propertyTotals[property] += totalPrice;
       } else {
-        apartmentTotals[apartment] = totalPrice;
+        propertyTotals[property] = totalPrice;
       }
     });
 
-    this.createBookingChart(Object.keys(apartmentTotals), Object.values(apartmentTotals));
+    this.createBookingChart(Object.keys(propertyTotals), Object.values(propertyTotals));
   }
 
   createBookingChart(labels: string[], data: number[]) {

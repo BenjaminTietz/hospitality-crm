@@ -3,18 +3,18 @@
     <table class="booking-table">
       <tr>
         <th>Name</th>
-        <th>E-Mail</th>
-        <th>Apartment</th>
-        <th>Check-in</th>
-        <th>Check-out</th>
+        <th class="mobile-display-none">E-Mail</th>
+        <th>Property</th>
+        <th class="mobile-display-none">Check-in</th>
+        <th class="mobile-display-none">Check-out</th>
         <th>Total Price</th>
       </tr>
       <tr *ngFor="let booking of allBookings" [routerLink]="['/bookings/' + booking.id]">
         <td>{{booking.firstName}} {{booking.lastName}}</td>
-        <td>{{booking.email}}</td>
-        <td>{{booking.apartment}}</td>
-        <td>{{booking.checkIn}}</td>
-        <td>{{booking.checkOut}}</td>
+        <td class="mobile-display-none">{{booking.email}}</td>
+        <td>{{booking.property}}</td>
+        <td class="mobile-display-none">{{booking.checkIn}}</td>
+        <td class="mobile-display-none">{{booking.checkOut}}</td>
         <td>{{booking.totalPrice}} €</td>
       </tr>
     </table>

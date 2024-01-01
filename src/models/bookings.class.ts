@@ -7,7 +7,7 @@ export class Bookings {
     city: string;
     checkIn: string;
     checkOut: string;
-    apartment: string;
+    property: string;
     duration: any;
     totalPrice: any;
   
@@ -20,8 +20,8 @@ export class Bookings {
       this.city = obj ? obj.city : '';
       this.checkIn = obj ? obj.checkIn : '';
       this.checkOut = obj ? obj.checkOut : '';
-      this.apartment = obj ? obj.apartment : '';
-      this.duration = obj ? obj.duration : null;  // Füge duration und totalPrice hinzu
+      this.property = obj ? obj.property : '';
+      this.duration = obj ? obj.duration : null;  
       this.totalPrice = obj ? obj.totalPrice : null;
     }
   
@@ -35,8 +35,8 @@ export class Bookings {
         city: this.city,
         checkIn: this.checkIn,
         checkOut: this.checkOut,
-        apartment: this.apartment,
-        duration: this.duration,  // Füge duration und totalPrice hinzu
+        property: this.property,
+        duration: this.duration,  
         totalPrice: this.totalPrice,
       };
     }

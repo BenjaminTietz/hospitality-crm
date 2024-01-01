@@ -51,7 +51,7 @@ export class DialogEditBookingComponent implements OnInit {
     let duration = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
 
     // Finde das entsprechende Apartment in den Properties
-    let selectedApartment = this.properties.find(property => property.name === this.booking.apartment);
+    let selectedApartment = this.properties.find(property => property.name === this.booking.property);
 
     // Überprüfe, ob das Apartment gefunden wurde
     if (selectedApartment) {

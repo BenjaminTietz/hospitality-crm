@@ -21,7 +21,6 @@ export class GuestDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.guestId = params.get('id') ?? '';
-      console.log('Guest ID: ' + this.guestId);
       this.getGuest();
     });
   }
@@ -32,9 +31,9 @@ export class GuestDetailComponent implements OnInit {
     .valueChanges()
     .subscribe((guests:any) => { 
       this.guest = new Guests(guests);
-      console.log('Got Guest',this.guest);
     });
   }
+
 
   editGuest() {
     const dialog = this.dialog.open(DialogEditGuestAddressComponent);
