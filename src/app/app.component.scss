@@ -73,6 +73,30 @@
     display: none!important;
   }
 
+  .popup {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    background-color: #3F51B5;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+  
+    animation: slide-in 225ms ease-in-out;
+  
+    @keyframes slide-in {
+      from {
+        transform: translateY(400%);
+      }
+      to {
+        transform: translateY(40%);
+      }
+    }
+  }
+
   @media screen and (max-width: 1000px) {
     .sidenav {
       position: absolute;

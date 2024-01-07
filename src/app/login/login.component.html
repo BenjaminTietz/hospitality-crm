@@ -10,7 +10,7 @@
             </mat-form-field>
             <span
             *ngIf="
-            loginForm.get('password')?.invalid  &&
+            loginForm.get('email')?.invalid  &&
             (loginForm.get('email')?.dirty ||
             loginForm.get('email')?.touched)"
             class="error-style">

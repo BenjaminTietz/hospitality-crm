@@ -50,4 +50,8 @@ export class AppComponent implements OnInit {
       }
     }
   }
+
+  closeSidenavAfterClick() {
+    this.checkWindowWidth();
+  }
 }

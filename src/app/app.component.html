@@ -5,16 +5,15 @@
       </div>
       <div class="sidebar">
       <ul class="menu-items">
-        <li (click)="drawer.toggle()" class="mobile-close-nav"><mat-icon>menu</mat-icon>close Sidenav</li>
-        <li routerLink="/dashboard"><mat-icon>dashboard</mat-icon>Dashboard</li>
-        <li routerLink="/properties"><mat-icon>real_estate_agent</mat-icon>Properties</li>
-        <li routerLink="/bookings"><mat-icon>fact_check</mat-icon>Bookings</li>
-        <li routerLink="/guests"><mat-icon>person</mat-icon>Guests</li>
+        <li (click)="closeSidenavAfterClick()" routerLink="/dashboard"><mat-icon>dashboard</mat-icon>Dashboard</li>
+        <li (click)="closeSidenavAfterClick()" routerLink="/properties"><mat-icon>real_estate_agent</mat-icon>Properties</li>
+        <li (click)="closeSidenavAfterClick()" routerLink="/bookings"><mat-icon>fact_check</mat-icon>Bookings</li>
+        <li (click)="closeSidenavAfterClick()" routerLink="/guests"><mat-icon>person</mat-icon>Guests</li>
       </ul>
       <ul class="menu-items">
-        <li routerLink="/info"><mat-icon>help</mat-icon>Info</li>
-        <li routerLink="/imprint"><mat-icon>security</mat-icon>Imprint</li>
-        <li routerLink="/privacy-policy"><mat-icon>privacy_tip</mat-icon>Privacy Policy</li>
+        <li (click)="closeSidenavAfterClick()" routerLink="/info"><mat-icon>help</mat-icon>Info</li>
+        <li (click)="closeSidenavAfterClick()" routerLink="/imprint"><mat-icon>security</mat-icon>Imprint</li>
+        <li (click)="closeSidenavAfterClick()" routerLink="/privacy-policy"><mat-icon>privacy_tip</mat-icon>Privacy Policy</li>
       </ul>
     </div>
     </mat-drawer>
@@ -30,6 +29,16 @@
   
       <div class="router-container">
         <router-outlet></router-outlet>
+                      <!-- Hidden popups-->
+                      <div class="popup">
+                        <span>You have been successfully logged in</span>
+                      </div>
+                    
+                      <div class="popup">
+                        <span>You have been successfully logged out</span>
+                      </div>
+                    
+                      <!--Hidden popups -->
       </div>
   
     </div>
