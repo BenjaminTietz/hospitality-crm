@@ -1,0 +1,72 @@
+<div class="dialog-container">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+  <h1 mat-dialog-title>Add Task</h1>
+  <div mat-dialog-content>
+    <div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Select date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Select date"
+          [(ngModel)]="task.date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Select property</mat-label>
+        <mat-select [(ngModel)]="task.property" placeholder="Select property">
+          <mat-option
+            *ngFor="let property of properties"
+            [value]="property.name"
+          >
+            {{ property.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Select status</mat-label>
+        <mat-select [(ngModel)]="task.status" placeholder="Select status">
+          <mat-option value="To do">To do</mat-option>
+          <mat-option value="In progress">In progress</mat-option>
+          <mat-option value="Done">Done</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select priority</mat-label>
+          <mat-select [(ngModel)]="task.priority" placeholder="Select priority">
+            <mat-option value="low">Low</mat-option>
+            <mat-option value="medium">Medium</mat-option>
+            <mat-option value="urgent">Urgent</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput [(ngModel)]="task.description" placeholder="Enter a short description"></textarea>
+        </mat-form-field>
+      </div>
+  </div>
+  <div mat-dialog-actions>
+    <button [disabled]="loading" mat-button (click)="this.dialogRef.close()">
+      Cancel
+    </button>
+    <button
+      [disabled]="loading"
+      (click)="saveTask()"
+      mat-button
+      cdkFocusInitial
+    >
+      Save
+    </button>
+  </div>
+</div>

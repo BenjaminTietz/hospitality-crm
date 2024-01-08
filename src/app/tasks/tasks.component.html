@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-content>
+      <table class="tasks-table">
+        <tr>
+          <th>Date</th>
+          <th>Property</th>
+          <th class="mobile-display-none">Status</th>
+          <th class="mobile-display-none">Priority</th>
+          <th>Description</th>
+        </tr>
+        <tr [routerLink]="['/tasks/' + task.id]" *ngFor="let task of allTasks">
+          <td> {{ task.date }} </td>
+          <td> {{ task.property }} </td>
+          <td class="mobile-display-none"> {{ task.status }} </td>
+          <td class="mobile-display-none"> {{ task.priority }} </td>
+          <td> {{ task.description }} </td>
+          <td>
+            <button class="delete-btn mobile-display-none" (click)="deleteTask($event,task, task.id)" mat-mini-fab color="primary" matTooltip="Delete task" [matTooltipPosition]="'left'!">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  
+  <button (click)="openDialog()" class="add-task-btn" mat-fab color="primary" matTooltip="Add task" [matTooltipPosition]="'above'!">
+    <mat-icon>add</mat-icon>
+  </button>

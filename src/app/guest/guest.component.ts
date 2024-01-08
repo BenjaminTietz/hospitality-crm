@@ -11,7 +11,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class GuestComponent {
 
-  guest:Guests = new Guests();  // variable user is of type User (: User in this case its any) and is a new instance of User class
+  guest:Guests = new Guests();  
   allGuests:any = [];
 
 

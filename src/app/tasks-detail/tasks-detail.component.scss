@@ -1,0 +1,92 @@
+.task-detail-header {
+    min-height: 250px;
+    background-color: grey;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+
+    img {
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+}
+
+.task-details {
+    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100px;
+
+    h2 {
+        margin-bottom: 0;
+    }
+}
+
+.pin-right-upper-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.pin-left-upper-corner {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    width: 88px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    h2 {
+        margin-bottom: 0;
+    }
+
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.low {
+    background-color: #00b894;
+}
+
+.medium {
+    background-color: orange;
+}
+
+.urgent {
+    background-color: red;
+}
+
+.to-do {
+    background-color: #0984e3;
+}
+
+.in-progress {
+    background-color: #6c5ce7;
+}
+
+.done {
+    background-color: #00cec9;
+}
+
+.ml-120 {
+    margin-left: 120px;
+}

@@ -1,0 +1,46 @@
+<mat-card class="task-detail-header">
+    <button
+    mat-icon-button
+    class="pin-right-upper-corner"
+    [matMenuTriggerFor]="taskMenu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <div (click)="editTaskStatus()" class="status pin-left-upper-corner" [ngClass]="{'to-do': task.status === 'To do', 'in-progress': task.status === 'In progress', 'done': task.status === 'Done'}">
+   <h2>Status:</h2>  
+   <span> {{ task.status }} </span>
+  </div>
+  <div (click)="editTaskPriority()" class="status pin-left-upper-corner ml-120" [ngClass]="{'low': task.priority === 'low', 'medium': task.priority === 'medium', 'urgent': task.priority === 'urgent'}">
+    <h2>Priority:</h2>  
+    <span> {{ task.priority }} </span>
+   </div>
+  <mat-menu #taskMenu="matMenu">
+    <button mat-menu-item (click)="deleteTask()" >Delete Task</button>
+  </mat-menu>
+  <img class="ml-16 mb-16" src="./assets/img/tasks.png" />
+  <div class="task-details">
+    <h2>{{ task.property }}</h2>
+    Task created: {{ task.date }}
+  </div>
+</mat-card>
+
+<mat-card class="mt-32">
+  <button
+    mat-icon-button
+    class="pin-right-upper-corner"
+    [matMenuTriggerFor]="guestAddressMenu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #guestAddressMenu="matMenu">
+    <button mat-menu-item (click)="editTaskDescription()" >Edit</button>
+  </mat-menu>
+
+  <mat-card-title class="ml-16">Description</mat-card-title>
+  <mat-card-content>
+     {{ task.description }}
+  </mat-card-content>
+</mat-card>
+

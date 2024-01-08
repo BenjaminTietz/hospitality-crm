@@ -47,6 +47,12 @@ import { PropertyDetailComponent } from './property-detail/property-detail.compo
 import { InfoComponent } from './info/info.component';
 import { DialogEditPropertyAddressComponent } from './dialog-edit-property-address/dialog-edit-property-address.component';
 import { DialogEditPropertyAmenitiesComponent } from './dialog-edit-property-amenities/dialog-edit-property-amenities.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { DialogAddTaskComponent } from './dialog-add-task/dialog-add-task.component';
+import { TasksDetailComponent } from './tasks-detail/tasks-detail.component';
+import { DialogEditTaskStatusComponent } from './dialog-edit-task-status/dialog-edit-task-status.component';
+import { DialogEditTaskPriorityComponent } from './dialog-edit-task-priority/dialog-edit-task-priority.component';
+import { DialogEditTaskDescriptionComponent } from './dialog-edit-task-description/dialog-edit-task-description.component';
 
 
 @NgModule({
@@ -72,7 +78,13 @@ import { DialogEditPropertyAmenitiesComponent } from './dialog-edit-property-ame
     PropertyDetailComponent,
     InfoComponent,
     DialogEditPropertyAddressComponent,
-    DialogEditPropertyAmenitiesComponent
+    DialogEditPropertyAmenitiesComponent,
+    TasksComponent,
+    DialogAddTaskComponent,
+    TasksDetailComponent,
+    DialogEditTaskStatusComponent,
+    DialogEditTaskPriorityComponent,
+    DialogEditTaskDescriptionComponent
   ],
   imports: [
     BrowserModule,

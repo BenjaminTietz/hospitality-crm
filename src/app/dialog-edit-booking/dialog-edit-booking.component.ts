@@ -27,7 +27,6 @@ export class DialogEditBookingComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogEditBookingComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    // Lade die Daten aus der "properties"-Sammlung
     this.fetchProperties();
   }
 

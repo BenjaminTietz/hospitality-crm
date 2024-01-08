@@ -1,0 +1,31 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  
+    <h1 mat-dialog-title>Edit Task Priority</h1>
+    <div mat-dialog-content>
+      <div>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Select priority</mat-label>
+            <mat-select [(ngModel)]="task.priority" placeholder="Select priority">
+              <mat-option value="low">Low</mat-option>
+              <mat-option value="medium">Medium</mat-option>
+              <mat-option value="urgent">Urgent</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+      <button [disabled]="loading" mat-button (click)="this.dialogRef.close()">
+        Cancel
+      </button>
+      <button
+        [disabled]="loading"
+        (click)="saveTaskPriority()"
+        mat-button
+        cdkFocusInitial
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  

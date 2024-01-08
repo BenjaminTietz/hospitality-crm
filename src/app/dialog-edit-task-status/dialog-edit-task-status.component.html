@@ -1,0 +1,31 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  
+    <h1 mat-dialog-title>Edit Task Status</h1>
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Select status</mat-label>
+          <mat-select [(ngModel)]="task.status" placeholder="Select status">
+            <mat-option value="To do">To do</mat-option>
+            <mat-option value="In progress">In progress</mat-option>
+            <mat-option value="Done">Done</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button [disabled]="loading" mat-button (click)="this.dialogRef.close()">
+        Cancel
+      </button>
+      <button
+        [disabled]="loading"
+        (click)="saveTaskStatus()"
+        mat-button
+        cdkFocusInitial
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  
