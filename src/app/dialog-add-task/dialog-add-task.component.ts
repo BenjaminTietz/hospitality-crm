@@ -24,12 +24,8 @@ export class DialogAddTaskComponent {
   }
 
   saveTask() {
-    console.log(this.task);
-    this.loading = true;
-    // Konvertiere das Datum ins gewünschte Format (Tag/Monat/Jahr)
-    if (this.task.date) {
-      this.task.date = new Date(this.task.date); // Convert string date to Date object
-    }
+    console.log('Task', this.task);
+     this.loading = true;
     (async () => {
       try {
         const result = await this.firestore.collection('tasks').add(this.task.toJSON());
@@ -40,11 +36,6 @@ export class DialogAddTaskComponent {
       this.loading = false;
       this.dialogRef.close();
     })();
-  }
-  
-  private formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
   }
 
   fetchProperties() {

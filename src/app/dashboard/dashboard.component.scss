@@ -1,7 +1,7 @@
 .add-booking-btn {
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  bottom: 124px;
 }
 
 .dashboard-wrapper {
@@ -46,9 +46,15 @@
   }
 }
 
+.tasks {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .mobile-display-none {
-      display: none;
+    display: none;
   }
-  
 }

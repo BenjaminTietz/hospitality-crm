@@ -33,6 +33,13 @@
     </mat-card-content>
   </mat-card>
 
+  <mat-card class="mt-32 mb-32 tasks" [routerLink]="'/tasks'">
+    <mat-card-content>
+      <h3>Urgent Tasks</h3>
+      Total Urgent Tasks: {{ urgentTasksCount }}
+    </mat-card-content>
+  </mat-card>
+
   <button
     (click)="openDialog()"
     class="add-booking-btn"

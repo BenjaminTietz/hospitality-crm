@@ -1,5 +1,3 @@
-// dashboard.component.ts
-
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ChartService } from '../services/chart.service'; // Import des ChartService
@@ -21,6 +19,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   totalNights: { [key: string]: number } = {};
   totalIncome: { [key: string]: number } = {};
   totalBookingIncome: number = 0;
+  urgentTasksCount: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -34,6 +33,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.getBookingData();
+    this.loadUrgentTasksCount();
   }
 
   ngOnInit(): void {}
@@ -100,5 +100,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialog() {
     this.dialog.open(DialogAddBookingComponent);
+  }
+
+  loadUrgentTasksCount() {
+    this.firestore.collection('tasks', ref => {
+      return ref.where('status', 'in', ['To do', 'In progress'])
+                .where('priority', '==', 'urgent');
+    }).valueChanges().subscribe((tasks: any[]) => {
+      this.urgentTasksCount = tasks.length;
+    });
   }
 }

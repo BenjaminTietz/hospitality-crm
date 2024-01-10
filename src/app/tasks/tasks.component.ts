@@ -14,7 +14,6 @@ export class TasksComponent {
   allTasks:any = [];
 
 
-
   constructor(public dialog: MatDialog, private firestore: AngularFirestore) {
 
    }
@@ -44,7 +43,7 @@ export class TasksComponent {
     } else {
       console.error('Task ID is missing.');
     }
-  }
+  }  
 }
 
 

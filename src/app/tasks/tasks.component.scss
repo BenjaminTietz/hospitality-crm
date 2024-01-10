@@ -59,6 +59,53 @@ mat-card-content {
     margin-right: 16px;
 }
 
+.low {
+    background-color: #00b894;
+}
+
+.medium {
+    background-color: orange;
+}
+
+.urgent {
+    background-color: red;
+}
+
+.to-do {
+    background-color: #0984e3;
+}
+
+.in-progress {
+    background-color: #6c5ce7;
+}
+
+.done {
+    background-color: #00cec9;
+}
+
+.tasks-table td:nth-child(2)  {
+
+    height: 20px;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    margin-top: 12px;
+    margin-right: 16px;
+}
+
+.tasks-table td:nth-child(3)  {
+
+    height: 20px;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    margin-top: 12px;
+    margin-right: 16px;
+}
 
 @media screen and (max-width: 600px) {
     .mobile-display-none {
